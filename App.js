@@ -7,7 +7,7 @@ import Login from './Login';
 import Home from './Home';
 import AdicionarLivros from './AdicionarLivros';
 import ListaDeLivros from './ListaDeLivros';
-import RetiradaDeLivro from './RetiradaDeLivro';
+import RetiradaDeLivros from './RetiradaDeLivros';
 
 const Stack = createStackNavigator();
 
@@ -19,27 +19,27 @@ const App = () => {
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{ title: 'Livraria' }}
+            options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{ title: 'Livraria' }}
+            options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />
           <Stack.Screen
             name="AdicionarLivros"
             component={AdicionarLivros}
-            options={{ title: 'Livraria' }}
+            options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />
           <Stack.Screen
             name="ListaDeLivros"
             component={ListaDeLivros}
-            options={{ title: 'Livraria' }}
+            options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />
           <Stack.Screen
             name="RetiradaDeLivro"
-            component={RetiradaDeLivro}
-            options={{ title: 'Livraria' }}
+            component={RetiradaDeLivros}
+            options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />
         </Stack.Navigator>
       </BookProvider>

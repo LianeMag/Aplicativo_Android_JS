@@ -1,9 +1,9 @@
 // RetiradaDeLivro.js
 import React, { useContext, useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, FlatList } from 'react-native';
+import {  View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList } from 'react-native';
 import { BookContext } from './BookContext';
 
-const RetiradaDeLivro = () => {
+const RetiradaDeLivros = () => {
   const [livro, setLivro] = useState('');
   const { books, removeBook } = useContext(BookContext);
 
@@ -25,10 +25,14 @@ const RetiradaDeLivro = () => {
         value={livro}
         onChangeText={setLivro}
       />
-      <Button title="Retirar" onPress={retirarLivro} />
+        <TouchableOpacity style={styles.button} onPress={retirarLivro}>
+        <Text style={styles.buttonText}>Retirar</Text>
+      </TouchableOpacity>
+
       <FlatList
+        style={styles.list}
         data={books}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(index) => index.toString()}
         renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
       />
     </View>
@@ -41,24 +45,47 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: '#f7e7ce'
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold', 
     marginBottom: 20,
+    color: '#59372b',
   },
   input: {
-    width: '100%',
-    padding: 10,
-    marginBottom: 10,
+    height: 50,           // Ajusta a altura do campo de entrada
+    width: '37%',         // Ajusta a largura do campo de entrada
+    borderColor: '#59372b',
     borderWidth: 1,
-    borderColor: '#ccc',
+    marginBottom: 7,
+    paddingHorizontal: 10, // Adiciona padding horizontal interno
+    borderRadius: 5,   
+  },
+  button: {
+    backgroundColor: '#59372b', 
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    height: 40,
+    width: '37%',
+    marginTop: 15, // Espaço acima do botão
+  },
+  buttonText: {
+    color: '#f7e7ce', 
+    fontSize: 17,
+  },
+  list: {
+    marginTop: 20, // Adiciona espaço acima da lista
+    width: '37%',
   },
   item: {
     padding: 10,
     fontSize: 18,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#59372b',
+    color: '#f7e7ce'
   },
 });
 
-export default RetiradaDeLivro;
+export default RetiradaDeLivros;

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import {  View, StyleSheet, Text, FlatList } from 'react-native';
 import { BookContext } from './BookContext';
 
 const ListaDeLivros = () => {
@@ -23,16 +23,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: '#f7e7ce'
   },
   title: {
     fontSize: 24,
-    marginBottom: 20,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    color: '#59372b',
   },
   item: {
     padding: 10,
     fontSize: 18,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#59372b',
+    width: '100%',
+    color: '#59372b',
+    backgroundColor: '#f7e7ce'
+  },
+  list: {
+    width: '100%',
   },
 });
 
