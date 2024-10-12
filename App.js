@@ -37,7 +37,7 @@ const App = () => {
             options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />
           <Stack.Screen
-            name="RetiradaDeLivro"
+            name="RetiradaDeLivros"
             component={RetiradaDeLivros}
             options={{ title: 'Sistema de Organização de Livros para a Livraria Refúgio das Letras' }}
           />

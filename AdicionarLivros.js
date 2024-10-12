@@ -10,6 +10,9 @@ const AdicionarLivros = () => {
     if (livro.trim() !== '') {
       addBook(livro);
       setLivro(''); // Limpa o campo após adicionar
+      alert('Livro adicionado com sucesso!');
+    } else {
+      alert('Por favor, insira o nome do livro.');
     }
   };
 

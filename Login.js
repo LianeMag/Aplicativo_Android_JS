@@ -52,7 +52,7 @@ import { View, TextInput, StyleSheet, Text, TouchableOpacity, Image } from 'reac
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#f7e7ce',
@@ -60,22 +60,23 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
-    marginTop: 10 
+    marginBottom: 10, 
   },
   image: { // Estilo para a imagem
-      width: 150, // Ajuste conforme necessário
-      height: 150, // Ajuste conforme necessário
-      marginRight: 10,
+      width: 130, // Ajuste conforme necessário
+      height: 130, // Ajuste conforme necessário
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     title: {
-      fontSize: 40,
+      fontSize: 28,
       fontWeight: 'bold',
       color: '#59372b',
-      marginRight: 100
+      justifyContent: 'center',
+      alignItems: 'center',
     },    
   title1: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#59372b',
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,           // Ajusta a altura do campo de entrada
-    width: '37%',         // Ajusta a largura do campo de entrada
+    width: '45%',         // Ajusta a largura do campo de entrada
     borderColor: '#59372b',
     borderWidth: 1,
     marginBottom: 7,
@@ -99,8 +100,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#59372b',
     marginTop: 5, // Espaço acima do texto
-    marginRight: 440,
     alignSelf: 'center', // Alinha o texto à esquerda
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
     backgroundColor: '#59372b', 
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     height: 40,
-    width: '37%',
+    width: '45%',
     marginTop: 15, // Espaço acima do botão
   },
   buttonText: {

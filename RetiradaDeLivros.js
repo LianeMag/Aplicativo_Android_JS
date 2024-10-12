@@ -1,6 +1,6 @@
 // RetiradaDeLivro.js
 import React, { useContext, useState } from 'react';
-import {  View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList } from 'react-native';
+import {  View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList, Alert} from 'react-native';
 import { BookContext } from './BookContext';
 
 const RetiradaDeLivros = () => {
@@ -8,11 +8,17 @@ const RetiradaDeLivros = () => {
   const { books, removeBook } = useContext(BookContext);
 
   const retirarLivro = () => {
-    if (livro.trim() !== '' && books.includes(livro)) {
+    if (livro.trim() === '') {
+      Alert.alert("Erro", "Por favor, insira o nome do livro.");
+      return;
+    }
+
+    if (books.includes(livro)) {
       removeBook(livro);
       setLivro(''); // Limpa o campo após a remoção
+      Alert.alert("Sucesso", "Livro removido com sucesso!");
     } else {
-      alert("Livro não encontrado na lista.");
+      Alert.alert("Erro", "Livro não encontrado na lista.");
     }
   };
 
@@ -32,7 +38,7 @@ const RetiradaDeLivros = () => {
       <FlatList
         style={styles.list}
         data={books}
-        keyExtractor={(index) => index.toString()}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
       />
     </View>
@@ -84,7 +90,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderBottomWidth: 1,
     borderBottomColor: '#59372b',
-    color: '#f7e7ce'
+    color: '#59372b',
+    textAlign: 'center',
   },
 });
 
