@@ -3,13 +3,17 @@ import { View, TextInput, StyleSheet, Text, TouchableOpacity } from 'react-nativ
 import { BookContext } from './BookContext';
 
 const AdicionarLivros = () => {
-  const [livro, setLivro] = useState('');
+  const [nome, setnome] = useState('');
+  const [autor, setautor] = useState('');
+  const [editora, seteditora] = useState('');
   const { addBook } = useContext(BookContext);
 
   const adicionarLivro = () => {
-    if (livro.trim() !== '') {
-      addBook(livro);
-      setLivro(''); // Limpa o campo após adicionar
+    if (nome.trim() && autor.trim() && editora.trim()) {
+      addBook({nome, autor, editora});
+      setnome('');
+      setautor('');
+      seteditora('');
       alert('Livro adicionado com sucesso!');
     } else {
       alert('Por favor, insira o nome do livro.');
@@ -19,12 +23,28 @@ const AdicionarLivros = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Adicione aqui os Livros</Text>
+
       <TextInput
         style={styles.input}
-        placeholder="Nome do livro"
-        value={livro}
-        onChangeText={setLivro}
+        placeholder="Nome do Livro"
+        value={nome}
+        onChangeText={setnome}
       />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Nome do Autor"
+        value={autor}
+        onChangeText={setautor}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Nome da Editora"
+        value={editora}
+        onChangeText={seteditora}
+      />
+
       <TouchableOpacity style={styles.button} onPress={adicionarLivro}>
         <Text style={styles.buttonText}>Adicionar</Text>
       </TouchableOpacity>

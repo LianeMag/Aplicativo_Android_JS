@@ -3,10 +3,8 @@ import { View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList, Alert } 
 import { BookContext } from './BookContext';
 
 const ListaDeLivros = () => {
-  const { books, updateBook } = useContext(BookContext);
+  const { books} = useContext(BookContext);
   const [pesquisa, setPesquisa] = useState('');
-  const [livroAntigo, setLivroAntigo] = useState('');
-  const [livroAtualizado, setLivroAtualizado] = useState('');
 
   // Função de pesquisa
   const pesquisarLivro = () => {
@@ -16,33 +14,15 @@ const ListaDeLivros = () => {
     }
 
     const resultado = books.filter((book) =>
-      typeof book === 'string' && book.toLowerCase().includes(pesquisa.toLowerCase())
-    );
+      book.nome.toLowerCase().includes(pesquisa.toLowerCase())    
+  );
 
     if (resultado.length > 0) {
-      Alert.alert('Livros encontrados', resultado.join(', '));
+      const lista = resultado.map((book) => `${book.nome} (Autor: ${book.autor}, Editora: ${book.editora})`).join('\n');
+      Alert.alert('Livros encontrados', lista);
     } else {
       Alert.alert('Nenhum livro encontrado.');
     }
-  };
-
-  // Função de atualizar
-  const atualizarLivro = () => {
-    if (livroAntigo.trim() === '' || livroAtualizado.trim() === '') {
-      Alert.alert('Por favor, preencha ambos os campos.');
-      return;
-    }
-    const livroExiste = books.includes(livroAntigo);
-    if (!livroExiste) {
-      Alert.alert('Erro', 'O livro antigo não foi encontrado.');
-      return;
-    }
-
-    // Atualiza o livro
-    updateBook(livroAntigo, livroAtualizado);
-    setLivroAntigo('');
-    setLivroAtualizado('');
-    Alert.alert('Livro atualizado com sucesso!');
   };
 
   return (
@@ -60,30 +40,18 @@ const ListaDeLivros = () => {
         <Text style={styles.buttonText}>Pesquisar</Text>
       </TouchableOpacity>
 
-      {/* Atualizar livro */}
-      <Text style={styles.title2}>Mudar Nome do Livro</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nome antigo"
-        value={livroAntigo}
-        onChangeText={setLivroAntigo}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Nome novo"
-        value={livroAtualizado}
-        onChangeText={setLivroAtualizado}
-      />
-      <TouchableOpacity style={styles.button} onPress={atualizarLivro}>
-        <Text style={styles.buttonText}>Atualizar</Text>
-      </TouchableOpacity>
-
-      {/* Lista de livros */}
       <FlatList
-        style={styles.list}
         data={books}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+        keyExtractor={( item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <Text style={styles.bookTitle}>{item.nome}</Text>
+            <Text>Autor: {item.autor}</Text>
+            <Text>Editora: {item.editora}</Text>
+          </View>
+        )}
+        showsVerticalScrollIndicator={true}
+        contentContainerStyle={styles.listContainer}
       />
     </View>
   );
@@ -94,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#f7e7ce'
   },
   title: {
@@ -102,12 +70,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 12,
     color: '#59372b',
-  },
-  title2: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 12,
-    color: '#59372b',
+
   },
   input: {
     height: 50,
@@ -117,6 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     paddingHorizontal: 10,
     borderRadius: 5,
+
   },
   button: {
     backgroundColor: '#59372b',
@@ -127,14 +91,16 @@ const styles = StyleSheet.create({
     width: '45%',
     marginTop: 10,
     marginBottom: 10
+
   },
   buttonText: {
     color: '#f7e7ce',
     fontSize: 17,
+
   },
-  list: {
-    marginTop: 20,
-    width: '80%',
+  listContainer: {
+    paddingBottom: 20,
+
   },
   item: {
     padding: 10,
@@ -143,7 +109,17 @@ const styles = StyleSheet.create({
     borderBottomColor: '#59372b',
     color: '#59372b',
     textAlign: 'center',
+    marginVertical: 5,
+
+  },
+
+  bookTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#59372b',
+    
   },
 });
+
 
 export default ListaDeLivros;
